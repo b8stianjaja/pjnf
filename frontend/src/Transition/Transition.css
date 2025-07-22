@@ -1,0 +1,27 @@
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 9999;
+  /*
+    The main transition for fading out. It affects opacity over 1.5s.
+    The visibility transition is delayed by 1.5s so it doesn't disappear
+    until after the fade-out is complete.
+  */
+  transition: opacity 1.5s ease-in-out, visibility 0s 1.5s;
+}
+
+.transition-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  /*
+    When fading in, we only need to transition the opacity.
+    The visibility change should be instant.
+  */
+  transition: opacity 1.5s ease-in-out;
+}

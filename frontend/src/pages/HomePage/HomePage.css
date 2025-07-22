@@ -1,0 +1,121 @@
+.title-screen {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #fff;
+  font-family: 'Royalacid', sans-serif;
+  background-image: url('/bgr/gfwcyan.gif');
+  background-size: cover;
+  background-position: center;
+  background-color: #000;
+  animation: cinematicPan 60s infinite alternate ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@keyframes cinematicPan {
+  from { background-position: 40% 50%; }
+  to { background-position: 60% 50%; }
+}
+
+.title-screen::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.6) 100%);
+  backdrop-filter: saturate(80%) brightness(90%);
+  z-index: 1;
+}
+
+.title-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.logo-container {
+  margin-bottom: 3rem;
+}
+
+.title-logo {
+  width: 45vw;
+  max-width: 1200px;
+  height: auto;
+  filter: drop-shadow(0 5px 30px rgba(0, 0, 0, 0.6));
+}
+
+.main-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-menu li {
+  opacity: 0;
+  animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.menu-link {
+  display: block;
+  padding: 0.25rem 0;
+  text-decoration: none !important;
+  line-height: 1;
+}
+
+.menu-image {
+  height: 50px;  
+  width: auto;
+  transition: transform 0.2s ease-out;
+}
+
+.menu-link:hover .menu-image {
+  transform: scale(1.1);
+}
+
+
+.title-footer {
+  position: absolute;
+  bottom: 1rem;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+
+  .title-logo {
+    width: 80vw;
+  }
+
+  .logo-container {
+    margin-bottom: 2rem;
+  }
+
+  .menu-image {
+    height: 40px;
+  }
+}

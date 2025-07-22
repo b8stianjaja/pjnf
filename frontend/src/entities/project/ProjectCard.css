@@ -1,0 +1,80 @@
+/*
+ * Stylesheet for the Ethereal Project Card
+ */
+.project-card {
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  border: 1px solid var(--border-color); /* Lighter default border */
+  background-color: var(--panel-bg); /* White background */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03); /* Very subtle initial shadow */
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.project-card:hover {
+  background-color: var(--card-hover-bg); /* Very light hover */
+  border-color: rgba(167, 217, 255, 0.4); /* Subtle blue on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Slightly more pronounced shadow */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.project-card.focused {
+  border-color: var(--focus-border); /* Brighter blue border for focus */
+  box-shadow: 0 0 20px rgba(167, 217, 255, 0.4); /* Ethereal blue glow */
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly translucent white when focused */
+  transform: translateY(-2px); /* Maintain lift */
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.card-header h5 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 400; /* Lighter font weight */
+  color: var(--text-primary);
+}
+
+/* Glowing status pulse */
+.card-status-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+  background-color: var(--text-secondary); /* Default pulse color */
+}
+.card-status-pulse::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: pulse-glow 2s infinite;
+}
+
+.status-in-progress { background-color: #5aa1e1; } /* Blue */
+.status-in-progress::after { box-shadow: 0 0 8px #5aa1e1; }
+
+.status-under-review { background-color: #d6b300; } /* Yellow */
+.status-under-review::after { box-shadow: 0 0 8px #d6b300; }
+
+.status-completed { background-color: #4CAF50; } /* Green */
+.status-completed::after { box-shadow: 0 0 8px #4CAF50; }
+
+
+@keyframes pulse-glow {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(167, 217, 255, 0.7); } /* Soft blue pulse */
+  70% { transform: scale(1); box-shadow: 0 0 10px 10px rgba(167, 217, 255, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(167, 217, 255, 0); }
+}
+
+.card-body p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}

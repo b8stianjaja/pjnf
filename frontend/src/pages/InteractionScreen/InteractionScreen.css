@@ -1,0 +1,62 @@
+.interaction-screen {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url('/bgr/gfwcyan.gif');
+  background-size: cover;
+  background-position: center;
+  background-color: #000;
+  animation: cinematicPan 60s infinite alternate ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.interaction-screen::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.6) 100%);
+    backdrop-filter: saturate(80%) brightness(90%);
+    z-index: 1;
+}
+
+.interaction-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    transform: translateY(25vh);
+}
+
+.prompt-image {
+  height: 150px;
+  width: auto;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+  transition: height 0.3s ease;
+}
+
+
+@keyframes cinematicPan {
+  from { background-position: 40% 50%; }
+  to { background-position: 60% 50%; }
+}
+
+@media (max-width: 768px) {
+  .interaction-content {
+    transform: translateY(20vh);
+  }
+
+  .prompt-image {
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .prompt-image {
+    height: 100px;
+  }
+}

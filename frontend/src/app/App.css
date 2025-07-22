@@ -1,0 +1,48 @@
+/* src/App.css */
+
+/* Define the color palette and fonts for the entire application.
+  This is the single source of truth for your design system.
+*/
+:root {
+  /* Fonts */
+  --font-primary: 'Inter', sans-serif; /* A clean font for body text */
+  --font-ui: 'Orbitron', sans-serif; /* A futuristic font for UI elements like your homepage menu */
+  
+  /* Colors */
+  --color-background: #0a0a0f; /* Very dark blue, almost black */
+  --color-surface: #10101a;   /* Slightly lighter surface for cards */
+  --color-primary: #00bfff;   /* Deep sky blue for accents */
+  --color-text: #e0e0e0;       /* Off-white for readability */
+  --color-text-hover: #ffffff; /* Pure white for hover states */
+  --color-glow: rgba(0, 191, 255, 0.5);
+
+  /* Animation */
+  --animation-curve: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* You MUST import the fonts in your main index.html file for them to work.
+  Add these lines to the <head> of your `index.html`:
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+}

@@ -1,0 +1,157 @@
+.dedicated-project-room {
+  background-color: var(--sidebar-background);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.dedicated-project-room.dark {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.project-header {
+  border-bottom: 1px solid var(--hover-color);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.project-header h1 {
+  margin: 0 0 5px 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2em;
+}
+
+.project-header p {
+  margin: 0;
+  color: #888;
+}
+
+.project-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.project-section {
+  background-color: var(--background);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.project-section h2 {
+    margin-top: 0;
+    font-family: 'Poppins', sans-serif;
+    border-bottom: 1px solid var(--hover-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.task-list li.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-list input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+}
+
+.file-list li {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.file-list svg {
+    margin-right: 10px;
+    color: var(--active-color);
+}
+
+.delete-file-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.2s linear;
+}
+
+.file-list li:hover .delete-file-btn {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.file-upload {
+    margin-top: 15px;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-upload label {
+    background-color: var(--active-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.chat-box {
+  height: 200px;
+  overflow-y: auto;
+  border: 1px solid var(--hover-color);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+}
+
+.chat-message.sent {
+  text-align: right;
+}
+
+.chat-input {
+  display: flex;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid var(--hover-color);
+  border-radius: 8px;
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+.chat-input button {
+  background-color: var(--active-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-left: 10px;
+  cursor: pointer;
+}

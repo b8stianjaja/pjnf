@@ -1,0 +1,114 @@
+:root {
+  --background-light: #f4f4f9;
+  --sidebar-light: #ffffff;
+  --text-light: #333;
+  --active-light: #6a1b9a;
+  --hover-light: #e9e9f2;
+
+  --background-dark: #121212;
+  --sidebar-dark: #1e1e1e;
+  --text-dark: #e0e0e0;
+  --active-dark: #bb86fc;
+  --hover-dark: #333333;
+}
+
+.light-mode {
+  --background: var(--background-light);
+  --sidebar-background: var(--sidebar-light);
+  --text-color: var(--text-light);
+  --active-color: var(--active-light);
+  --hover-color: var(--hover-light);
+}
+
+.dark-mode {
+  --background: var(--background-dark);
+  --sidebar-background: var(--sidebar-dark);
+  --text-color: var(--text-dark);
+  --active-color: var(--active-dark);
+  --hover-color: var(--hover-dark);
+}
+
+.hub-container {
+  display: flex;
+  height: 100vh;
+  background-color: var(--background);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.hub-sidebar {
+  width: 280px;
+  background-color: var(--sidebar-background);
+  padding: 20px;
+  border-right: 1px solid var(--hover-color);
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sidebar-header h2 {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+}
+
+.project-list li {
+  padding: 12px 18px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+.project-list li:hover {
+  background-color: var(--hover-color);
+}
+
+.project-list li.active {
+  background-color: var(--active-color);
+  color: white;
+  font-weight: 600;
+}
+
+.hub-main-content {
+  flex-grow: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.no-projects-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  color: #888;
+}
+
+.no-projects-icon {
+  margin-bottom: 20px;
+  color: var(--active-color);
+}
