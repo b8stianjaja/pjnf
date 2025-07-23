@@ -1,15 +1,17 @@
-import React, { useRef, useEffect, useState, forwardRef } from 'react';
+/* CrystalPage/components/Player.jsx */
+
+import React, { useRef, useEffect, forwardRef } from 'react';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { RigidBody, CapsuleCollider } from '@react-three/rapier';
 import * as THREE from 'three';
 import { useInput } from '../hooks/useInput';
 
-const MOVE_SPEED = 3;
+const MOVE_SPEED = 0.15;
 const ROTATION_SPEED = 4;
 const ANIMATION_SPEED_FACTOR = 0.8;
 const SMOOTH_TIME = 0.1;
-const CHARACTER_SCALE = 40;
+const CHARACTER_SCALE = 2;
 
 export const Player = forwardRef(({ characterRef }, ref) => {
   const playerRef = ref;
@@ -18,8 +20,10 @@ export const Player = forwardRef(({ characterRef }, ref) => {
 
   const { scene, animations } = useGLTF('/character0.glb');
   const { actions } = useAnimations(animations, characterRef);
-  const [currentAnimation, setCurrentAnimation] = useState('Idle');
+  const currentAnimation = useRef('Idle');
   
+  // Best practice: Using refs for mutable objects that are accessed in the render loop
+  // to prevent re-creation on every frame.
   const velocity = useRef(new THREE.Vector3());
   const rotationSpeed = useRef(0);
 
@@ -47,6 +51,7 @@ export const Player = forwardRef(({ characterRef }, ref) => {
   }, [actions, scene]);
 
   useFrame((state, delta) => {
+    // Calling handleGamepad in useFrame ensures we get the latest gamepad state.
     handleGamepad();
     
     const player = playerRef.current;
@@ -58,6 +63,7 @@ export const Player = forwardRef(({ characterRef }, ref) => {
     if (left) targetRotationSpeed += ROTATION_SPEED;
     if (right) targetRotationSpeed -= ROTATION_SPEED;
 
+    // Using lerp for smooth rotation changes.
     rotationSpeed.current = THREE.MathUtils.lerp(rotationSpeed.current, targetRotationSpeed, delta / SMOOTH_TIME);
     characterRef.current.rotation.y += rotationSpeed.current * delta;
 
@@ -67,6 +73,7 @@ export const Player = forwardRef(({ characterRef }, ref) => {
     moveDirection.applyQuaternion(characterRef.current.quaternion);
     
     const targetVelocity = moveDirection.multiplyScalar(MOVE_SPEED);
+    // Using lerp for smooth velocity changes.
     velocity.current.lerp(targetVelocity, delta / SMOOTH_TIME);
 
     const currentPos = player.translation();
@@ -82,12 +89,13 @@ export const Player = forwardRef(({ characterRef }, ref) => {
         nextAnimation = forward ? 'Walk' : 'WalkBack';
     }
 
-    if (nextAnimation !== currentAnimation) {
-      const oldAction = actions[currentAnimation];
+    // Smoothly transition between animations.
+    if (nextAnimation !== currentAnimation.current) {
+      const oldAction = actions[currentAnimation.current];
       const newAction = actions[nextAnimation];
       oldAction?.fadeOut(0.2);
       newAction?.reset().fadeIn(0.2).play();
-      setCurrentAnimation(nextAnimation);
+      currentAnimation.current = nextAnimation;
     }
   });
 
