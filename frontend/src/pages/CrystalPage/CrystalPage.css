@@ -1,15 +1,34 @@
+/* CrystalPage/CrystalPage.css */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background-color: #101010;
+  position: relative;
+  z-index: 0;
+}
+
 .crystal-page-container {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .crystal-canvas-container {
   width: 100%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
 
-body {
-  margin: 0;
-  background-color: #101010;
-}
+/* All styles for .menu-overlay and .menu-container have been
+  REMOVED from this file. Their styles are now correctly and
+  exclusively controlled by Menu.css.
+*/
