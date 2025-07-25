@@ -5,7 +5,7 @@ import { useGLTF, useAnimations } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { RigidBody, CapsuleCollider } from '@react-three/rapier';
 import * as THREE from 'three';
-import { useInput } from '../hooks/useInput';
+import { useInput } from '../../hooks/useInput';
 
 const MOVE_SPEED = 0.15;
 const ROTATION_SPEED = 4;
@@ -35,23 +35,26 @@ export const Player = forwardRef(({ characterRef, onToggleMenu }, ref) => {
     right: false,
   });
 
-  // RE-INTRODUCED: wasActionPressed for gamepad action button debounce
-  const wasActionPressed = useRef(false); //
+  const wasActionPressed = useRef(false);
 
 
   const handleKeyDown = useCallback((e) => {
     const keyLower = e.key.toLowerCase();
+    const isTyping = document.activeElement?.tagName === 'INPUT';
     
-    // Prevent default browser behavior for controlled MOVEMENT keys
-    if (
-      keyLower === 'w' || keyLower === 'arrowup' ||
-      keyLower === 's' || keyLower === 'arrowdown' ||
-      keyLower === 'a' || keyLower === 'arrowleft' ||
-      keyLower === 'd' || keyLower === 'arrowright'
-    ) {
-      e.preventDefault(); 
+    // MODIFIED: Only prevent default browser behavior (like scrolling) when NOT typing.
+    if (!isTyping) {
+      if (
+        keyLower === 'w' || keyLower === 'arrowup' ||
+        keyLower === 's' || keyLower === 'arrowdown' ||
+        keyLower === 'a' || keyLower === 'arrowleft' ||
+        keyLower === 'd' || keyLower === 'arrowright'
+      ) {
+        e.preventDefault(); 
+      }
     }
 
+    // This switch always runs, allowing simultaneous movement and typing.
     switch (keyLower) {
       case 'w': case 'arrowup': keyboardInput.current.forward = true; break;
       case 's': case 'arrowdown': keyboardInput.current.backward = true; break;
@@ -113,14 +116,12 @@ export const Player = forwardRef(({ characterRef, onToggleMenu }, ref) => {
     const left = keyboardInput.current.left || gamepadInput.left;
     const right = keyboardInput.current.right || gamepadInput.right;
     
-    // Get gamepad action state
     const action = gamepadInput.action; 
 
-    // Check for gamepad action button press to toggle menu (if onToggleMenu is provided)
-    if (onToggleMenu && action && !wasActionPressed.current) { //
+    if (onToggleMenu && action && !wasActionPressed.current) {
         onToggleMenu(); 
     }
-    wasActionPressed.current = action; //
+    wasActionPressed.current = action;
 
 
     let targetRotationSpeed = 0;

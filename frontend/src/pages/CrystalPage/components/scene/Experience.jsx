@@ -1,18 +1,16 @@
-/* CrystalPage/components/Experience.jsx */
-
-import React, { Suspense, useRef, createContext, useState } from 'react';
+import React, { Suspense, useRef, createContext } from 'react';
 import { Select, useGLTF, Environment } from '@react-three/drei';
 import { EffectComposer, Bloom, SMAA } from '@react-three/postprocessing';
 import { Physics, RigidBody, TrimeshCollider } from '@react-three/rapier';
 import { Player } from './Player';
 import { Camera } from './Camera';
 import { World } from './World';
-import { Ocean } from './Water';
+import { Ocean } from './Water'; // Correctly importing Ocean from Water.jsx
 import { MenuTrigger } from './MenuTrigger';
 
 export const RefsContext = createContext();
 
-export function Experience({ isMenuVisible, onToggleMenu, onFileUpload, onChat }) {
+export function Experience({ isMenuVisible, onToggleMenu }) {
   const playerRef = useRef();
   const characterRef = useRef();
   const worldRef = useRef();

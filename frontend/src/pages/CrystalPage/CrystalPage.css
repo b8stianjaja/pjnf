@@ -1,12 +1,20 @@
 /* CrystalPage/CrystalPage.css */
 
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-  background-color: #101010;
+  background: linear-gradient(-45deg, #101010, #1a1a1a, #101010, #232323);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
   position: relative;
   z-index: 0;
 }
@@ -19,6 +27,11 @@ html, body {
   z-index: 1;
 }
 
+@keyframes canvas-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .crystal-canvas-container {
   width: 100%;
   height: 100%;
@@ -26,6 +39,7 @@ html, body {
   top: 0;
   left: 0;
   z-index: 2;
+  animation: canvas-fade-in 2s ease-out;
 }
 
 /* All styles for .menu-overlay and .menu-container have been
